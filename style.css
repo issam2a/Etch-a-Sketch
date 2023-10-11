@@ -27,7 +27,7 @@ body {
   height: 30px;
   background-color: #4fc3dc;
   margin: 0 4px;
-  border-radius: 50%;
+  border-radius: 100%;
   box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
   animation: animate 15s linear infinite;
   animation-duration: calc(125s / var(--i));
@@ -62,7 +62,7 @@ body {
 }
 .innerDiv {
   display: flex;
-  background-color: rgba(134, 148, 148, 0.596);
+  background-color: rgba(134, 148, 148, 0.753);
   flex-basis: calc(100% / var(--num-Div));
   aspect-ratio: 1/1;
   box-sizing: border-box;
@@ -70,5 +70,5 @@ body {
 }
 .settings {
   z-index: 1;
-  background-color: rgba(134, 148, 148, 0.493);
+  background-color: rgba(134, 148, 148, 0.712);
 }
