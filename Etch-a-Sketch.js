@@ -33,3 +33,13 @@ function removeInnerDivs() {
     container.removeChild(container.firstChild);
   }
 }
+
+userInput.addEventListener(`input`, (e) => {
+  console.log(e.target.value);
+  removeInnerDivs();
+  gridSize = e.target.value;
+  divNum = Math.pow(gridSize, 2);
+  createGridDivs();
+  setDivStyle();
+  showUserInput.textContent = `Grid size : ${gridSize}x${gridSize}`;
+});
