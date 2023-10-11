@@ -22,6 +22,7 @@ function setDivStyle() {
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
     item.style.setProperty("--num-Div", gridSize);
+    // changing the background when  hovering  over the div
     item.addEventListener("mouseenter", () => {
       item.style.setProperty("background-color", "red");
     });
