@@ -16,3 +16,15 @@ function createGridDivs() {
 
   container.appendChild(fragment);
 }
+createGridDivs();
+
+function setDivStyle() {
+  let items = document.querySelectorAll(".innerDiv");
+  items.forEach((item) => {
+    item.style.setProperty("--num-Div", gridSize);
+    item.addEventListener("mouseenter", () => {
+      item.style.setProperty("background-color", "red");
+    });
+  });
+}
+setDivStyle();
