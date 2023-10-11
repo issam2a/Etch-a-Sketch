@@ -28,3 +28,8 @@ function setDivStyle() {
   });
 }
 setDivStyle();
+function removeInnerDivs() {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
