@@ -14,3 +14,10 @@ body {
   width: 400px;
   border: 1px solid black;
 }
+.innerDiv {
+  display: flex;
+  background-color: aliceblue;
+  flex-basis: calc(100% / var(--num-Div));
+  aspect-ratio: 1/1;
+  box-sizing: border-box;
+}
