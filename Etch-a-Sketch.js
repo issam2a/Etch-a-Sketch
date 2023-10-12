@@ -44,3 +44,8 @@ userInput.addEventListener(`input`, (e) => {
   setDivStyle();
   showUserInput.textContent = `Grid size : ${gridSize}x${gridSize}`;
 });
+let colorContainer = document.querySelector(".themeColorContainer");
+let switchBtn = document.querySelector(".switcherBtn");
+switchBtn.addEventListener("click", () => {
+  colorContainer.classList.toggle("show");
+});
