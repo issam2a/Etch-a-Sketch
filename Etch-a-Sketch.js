@@ -5,7 +5,8 @@ let gridSize = 16;
 let divNum = Math.pow(gridSize, 2);
 let showUserInput = document.querySelector(".label");
 showUserInput.textContent = `Grid size : ${gridSize}x${gridSize}`;
-
+let rootStyle = getComputedStyle(document.documentElement);
+let primaryColor = rootStyle.getPropertyValue("--main-color");
 function createGridDivs() {
   for (let i = 0; i < divNum; i++) {
     let innerDiv = document.createElement("div");
@@ -24,7 +25,7 @@ function setDivStyle() {
     item.style.setProperty("--num-Div", gridSize);
     // changing the background when  hovering  over the div
     item.addEventListener("mouseenter", () => {
-      item.style.setProperty("background-color", "red");
+      item.style.setProperty("background-color", primaryColor);
     });
   });
 }
@@ -50,10 +51,20 @@ switchBtn.addEventListener("click", () => {
   colorContainer.classList.toggle("show");
 });
 
-let eraseBtn = document.querySelector(".eraser");
-eraseBtn.addEventListener("click", () => {
+let clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", () => {
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
     item.style.setProperty("background-color", "");
+  });
+});
+
+let eraserBtn = document.querySelector(".eraser");
+eraserBtn.addEventListener("click", () => {
+  let items = document.querySelectorAll(".innerDiv");
+  items.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      item.style.setProperty("background-color", "");
+    });
   });
 });
