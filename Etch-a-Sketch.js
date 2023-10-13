@@ -49,3 +49,11 @@ let switchBtn = document.querySelector(".switcherBtn");
 switchBtn.addEventListener("click", () => {
   colorContainer.classList.toggle("show");
 });
+
+let eraseBtn = document.querySelector(".eraser");
+eraseBtn.addEventListener("click", () => {
+  let items = document.querySelectorAll(".innerDiv");
+  items.forEach((item) => {
+    item.style.setProperty("background-color", "");
+  });
+});
