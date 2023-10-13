@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 :root {
-  --main-color: #8e44ad;
+  --main-color: #2980b9;
 }
 body {
   box-sizing: border-box;
@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0c192c;
+  background-color: var(--main-color);
 }
 .main {
   position: relative;
