@@ -77,7 +77,7 @@ body {
   z-index: 1;
   background-color: #16161ac5;
   min-height: 50vh;
-  min-width: 100vh;
+  min-width: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
