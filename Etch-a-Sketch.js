@@ -5,9 +5,11 @@ let gridSize = 16;
 let divNum = Math.pow(gridSize, 2);
 let showUserInput = document.querySelector(".label");
 showUserInput.textContent = `Grid size : ${gridSize}x${gridSize}`;
-let rootStyle = getComputedStyle(document.documentElement);
-let primaryColor = rootStyle.getPropertyValue("--main-color");
+
+let root = document.documentElement;
+
 let isMouseDown = false;
+let span = document.querySelectorAll(".themeBtn");
 function createGridDivs() {
   for (let i = 0; i < divNum; i++) {
     let innerDiv = document.createElement("div");
@@ -27,7 +29,7 @@ function setDivStyle() {
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
     item.style.setProperty("--num-Div", gridSize);
-    // changing the background when  hovering  over the div
+
     item.addEventListener("mousedown", () => {
       isMouseDown = true;
     });
@@ -37,7 +39,7 @@ function setDivStyle() {
 
     item.addEventListener("mousemove", () => {
       if (isMouseDown) {
-        item.style.setProperty("background-color", primaryColor);
+        item.classList.add("draw");
       }
     });
   });
@@ -67,8 +69,8 @@ switchBtn.addEventListener("click", () => {
 
 let clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", () => {
-  pen.classList.add("active");
-  eraserBtn.classList.remove("active");
+  pen.classList.add("btnActive");
+  eraserBtn.classList.remove("btnActive");
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
     item.style.setProperty("background-color", "");
@@ -78,8 +80,8 @@ clearBtn.addEventListener("click", () => {
 
 let eraserBtn = document.querySelector(".eraser");
 eraserBtn.addEventListener("click", () => {
-  pen.classList.remove("active");
-  eraserBtn.classList.add("active");
+  pen.classList.remove("btnActive");
+  eraserBtn.classList.add("btnActive");
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
     item.addEventListener("mousedown", () => {
@@ -99,7 +101,17 @@ eraserBtn.addEventListener("click", () => {
 
 let pen = document.querySelector(".pen");
 pen.addEventListener("click", () => {
-  pen.classList.add("active");
-  eraserBtn.classList.remove("active");
+  pen.classList.add("btnActive");
+  eraserBtn.classList.remove("btnActive");
   setDivStyle();
+});
+
+let colorSelector = document.querySelectorAll(".themeBtn");
+colorSelector.forEach((item) => {
+  let itemColor = item.getAttribute("data-color");
+  item.addEventListener("click", () => {
+    console.log(itemColor);
+
+    root.style.setProperty("--main-color", itemColor);
+  });
 });

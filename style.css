@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 :root {
-  --main-color: #8e44ad;
+  --main-color: #2980b9;
 }
 body {
   box-sizing: border-box;
@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0c192c;
+  background-color: #1f1c27;
 }
 .main {
   position: relative;
@@ -72,6 +72,9 @@ body {
   aspect-ratio: 1/1;
   box-sizing: border-box;
   z-index: 1;
+}
+.draw {
+  background-color: var(--main-color);
 }
 .settings {
   z-index: 1;
@@ -236,7 +239,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
 }
 
-.active {
+.btnActive {
   background-color: var(--main-color);
   opacity: 0.5;
 }
