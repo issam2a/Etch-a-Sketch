@@ -4,16 +4,29 @@ let fragment = document.createDocumentFragment();
 let gridSize = 16;
 let divNum = Math.pow(gridSize, 2);
 let showUserInput = document.querySelector(".label");
+
 showUserInput.textContent = `Grid size : ${gridSize}x${gridSize}`;
 
 let rootStyle = getComputedStyle(document.documentElement);
+let root = document.documentElement;
 let primaryColor = rootStyle.getPropertyValue("--main-color");
-
+let colorMode = rootStyle.getPropertyValue("--main-color");
 let isMouseDown = false;
 let span = document.querySelectorAll(".themeBtn");
 
 let body = document.querySelector("body");
 let pen = document.querySelector(".pen");
+let rainbowBtn = document.querySelector(".rainbow");
+let colorArray = [
+  "Red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "indigo",
+  "violet",
+];
+
 function createGridDivs() {
   for (let i = 0; i < divNum; i++) {
     let innerDiv = document.createElement("div");
@@ -45,11 +58,18 @@ function setDivStyle() {
     item.addEventListener("mousemove", () => {
       if (isMouseDown) {
         item.style.setProperty("background-color", primaryColor);
+
+        console.log(primaryColor);
+      }
+
+      if (isMouseDown && rainbowBtn.className === "btn rainbow btnActive") {
+        primaryColor = createRandomColor();
+        pen.classList.remove("btnActive");
       }
     });
   });
 }
-
+console.log(rainbowBtn.className);
 setDivStyle();
 function removeInnerDivs() {
   while (container.firstChild) {
@@ -74,12 +94,13 @@ switchBtn.addEventListener("click", () => {
 
 let clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", () => {
+  primaryColor = colorMode;
   pen.classList.add("btnActive");
   eraserBtn.classList.remove("btnActive");
+  rainbowBtn.classList.remove("btnActive");
   setDivStyle();
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
-    // item.classList.remove("draw");
     item.style.setProperty("background-color", "");
   });
 });
@@ -87,6 +108,7 @@ clearBtn.addEventListener("click", () => {
 let eraserBtn = document.querySelector(".eraser");
 eraserBtn.addEventListener("click", () => {
   pen.classList.remove("btnActive");
+  rainbowBtn.classList.remove("btnActive");
   eraserBtn.classList.add("btnActive");
   let items = document.querySelectorAll(".innerDiv");
   items.forEach((item) => {
@@ -108,18 +130,25 @@ eraserBtn.addEventListener("click", () => {
 pen.addEventListener("click", () => {
   pen.classList.add("btnActive");
   eraserBtn.classList.remove("btnActive");
+  rainbowBtn.classList.remove("btnActive");
+  primaryColor = colorMode;
   setDivStyle();
+
+  console.log(primaryColor);
 });
 
 let colorSelector = document.querySelectorAll(".themeBtn");
+
 colorSelector.forEach((item) => {
   let itemColor = item.getAttribute("data-color");
   item.addEventListener("click", () => {
-    console.log(itemColor);
-
     primaryColor = itemColor;
+    colorMode = itemColor;
+    root.style.setProperty("--main-color", primaryColor);
+    console.log(primaryColor);
   });
 });
+
 container.addEventListener("mousemove", function (event) {
   const xPos = event.clientX;
   const yPos = event.clientY;
@@ -133,4 +162,22 @@ container.addEventListener("mousemove", function (event) {
   const color = `hsl(${hue}, ${saturation}%, 50%)`;
   container.style.backgroundColor = color;
 });
-// n
+
+function createRandomColor() {
+  const randomDecimal =
+    colorArray[Math.floor(Math.random() * colorArray.length)];
+  return randomDecimal;
+}
+let randomDecimal = createRandomColor();
+console.log(createRandomColor());
+
+rainbowBtn.addEventListener("click", () => {
+  rainbowBtn.classList.add("btnActive");
+  eraserBtn.classList.remove("btnActive");
+  pen.classList.remove("btnActive");
+  setDivStyle();
+  createRandomColor();
+  console.log(randomDecimal);
+  console.log(rainbowBtn.className);
+  console.log(primaryColor);
+});
